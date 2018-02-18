@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Analyze Sample</title>
+    <title>Image Captioner</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script type="text/javascript" src="analyzeimage.js"></script>
 </head>
@@ -15,13 +15,13 @@ Image to analyze: <input type="text" name="inputImage" id="inputImage"/>
 <button id="button">Analyze image</button>
 <br><br>
 <div id="wrapper" style="width:1020px; display:table;">
-    <div id="jsonOutput" style="width:600px; display:table-cell;">
-        Suggested Captions:
-        <textarea id="responseTextArea" class="UIInput" style="width:580px; height:400px;"></textarea>
-    </div>
     <div id="imageDiv" style="width:420px; display:table-cell;">
         Source image:
         <img id="sourceImage" width="400" />
+    </div>
+    <div id="jsonOutput" style="width:600px; display:table-cell;">
+        Suggested Captions:
+        <textarea id="responseTextArea" class="UIInput" style="width:580px; height:400px;"></textarea>
     </div>
 </div>
 </body>
