@@ -65,6 +65,7 @@
             console.log("fetching data");
             let url = "findall.php?word="
             var string = "";
+            document.getElementById("responseTextArea").innerHTML = "loading";
             for (var i = 0; i < 5; i++) {
                 fetch(url + data.description.tags[i])
                 .then(checkStatus)
@@ -91,20 +92,16 @@
 </script>
 
 <h1>Analyze image:</h1>
-Enter the URL to an image of a natural or artificial landmark, then click the <strong>Analyze image</strong> button.
-<br><br>
+Enter the URL to an image of a natural or artificial landmark, then click the <strong>Analyze image</strong> button to receive suggested captions.
 Image to analyze: <input type="text" name="inputImage" id="inputImage" value="http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg" />
 <button onclick="processImage()">Analyze image</button>
-<br><br>
 <div id="wrapper" style="width:1020px; display:table;">
     <div id="jsonOutput" style="width:600px; display:table-cell;">
-        Response:
-        <br><br>
+        Suggested Captions:
         <textarea id="responseTextArea" class="UIInput" style="width:580px; height:400px;"></textarea>
     </div>
     <div id="imageDiv" style="width:420px; display:table-cell;">
         Source image:
-        <br><br>
         <img id="sourceImage" width="400" />
     </div>
 </div>
