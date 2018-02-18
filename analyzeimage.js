@@ -67,7 +67,11 @@
                     for(let j = 0; j < data["phrases"].length; j++) {
                         string += data["phrases"][j]["phrase"] + "\n\n";
                     }
-                    document.getElementById("responseTextArea").innerHTML = string;
+                    if(!string) {
+                        document.getElementById("responseTextArea").innerHTML = "No captions were found for this image.";
+                    } else {
+                        document.getElementById("responseTextArea").innerHTML = string;
+                    }
                 })
                 .catch(function(error) {
                     console.log("Error occured:" + error);
@@ -79,7 +83,7 @@
             // Display error message.
             var errorString = (errorThrown === "") ? "Error. " : errorThrown + " (" + jqXHR.status + "): ";
             errorString += (jqXHR.responseText === "") ? "" : jQuery.parseJSON(jqXHR.responseText).message;
-            alert(errorString);
+            console.log(errorString);
         });
     };
 })();
