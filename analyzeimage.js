@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Analyze Sample</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-</head>
-<body>
+(function() {
+    window.onload = function() {
+        document.getElementById("button").onclick = processImage;
+    };
 
-<script type="text/javascript">
     function checkStatus(response) {  
         if (response.status >= 200 && response.status < 300) {  
             return response.text();
@@ -16,9 +12,7 @@
     }
 
     function processImage() {
-        // **********************************************
-        // *** Update or verify the following values. ***
-        // **********************************************
+        document.getElementById("responseTextArea").innerHTML = "loading";
 
         // Replace the subscriptionKey string value with your valid subscription key.
         var subscriptionKey = "74b1a35a7ef84b74bdd9a60c1301e255";
@@ -65,7 +59,6 @@
             console.log("fetching data");
             let url = "findall.php?word="
             var string = "";
-            document.getElementById("responseTextArea").innerHTML = "loading";
             for (var i = 0; i < 5; i++) {
                 fetch(url + data.description.tags[i])
                 .then(checkStatus)
@@ -89,24 +82,4 @@
             alert(errorString);
         });
     };
-</script>
-
-<h1>Analyze image:</h1>
-Enter the URL to an image of a natural or artificial landmark, then click the <strong>Analyze image</strong> button to receive suggested captions.
-<br><br>
-Image to analyze: <input type="text" name="inputImage" id="inputImage" value="http://upload.wikimedia.org/wikipedia/commons/3/3c/Shaki_waterfall.jpg" />
-<button onclick="processImage()">Analyze image</button>
-<br><br>
-<div id="wrapper" style="width:1020px; display:table;">
-    <div id="jsonOutput" style="width:600px; display:table-cell;">
-        Suggested Captions:
-        <textarea id="responseTextArea" class="UIInput" style="width:580px; height:400px;"></textarea>
-    </div>
-    <div id="imageDiv" style="width:420px; display:table-cell;">
-        Source image:
-        <img id="sourceImage" width="400" />
-    </div>
-</div>
-</body>
-</html>
-
+})();
