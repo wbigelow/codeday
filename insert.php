@@ -8,7 +8,8 @@
 		$output = missing_param(["phrase"]);
 	} else {
 		$db = get_db();
-		insert($db, $lowercase_name, $nickname);
+		insert($db, $phrase);
+		$output["success"] = "Successfully added phrase to database";
 	}
 	header("Content-Type: application/json");
 	print(json_encode($output));

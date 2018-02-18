@@ -3,7 +3,7 @@
 
 	# returns: a new database connection
 	function get_db() {
-		$db = new PDO("mysql:host=127.0.0.1;dbname=hw7;charset=utf8", "root", "root");
+		$db = new PDO("mysql:host=127.0.0.1;dbname=codeday;charset=utf8", "root", "root");
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		return $db;
 	}
