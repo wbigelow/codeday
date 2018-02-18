@@ -6,7 +6,7 @@
 		$output = missing_param(["word"]);
 	} else {
 		$db = get_db();
-		$output["phrases"] = findall($db, $phrase);
+		$output["phrases"] = findall($db, $word);
 	}
 	header("Content-Type: application/json");
 	print(json_encode($output));

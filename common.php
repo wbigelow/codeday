@@ -3,7 +3,7 @@
 
 	# returns: a new database connection
 	function get_db() {
-		$db = new PDO("mysql:host=127.0.0.1;dbname=codeday;charset=utf8", "root", "root");
+		$db = new PDO("mysql:host=wbigelow.vergil.u.washington.edu;port=12546;dbname=codeday;charset=utf8", "root", "root");
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		return $db;
 	}
@@ -47,7 +47,7 @@
 	# returns:
 	#		an error if the phrase is in the database
 	function findall($db, $word) {
-		return $db->query("SELECT * FROM Phrases WHERE phrase LIKE '%$word%';")->fetchAll();
+		return $db->query("SELECT * FROM Phrases WHERE phrase LIKE '%$word %';")->fetchAll();
 	}
 
 	# Creates an error response for when a request is made with invalid parameters

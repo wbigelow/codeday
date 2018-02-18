@@ -2,8 +2,6 @@
 (function() {
 
 	window.onload = function() {
-		console.log("working");
-		sendLine("hello");
 		document.getElementById('file').onchange = function(){
 			console.log("uploading");
 			var file = this.files[0];
@@ -35,13 +33,17 @@
 	}
 
 	function sendLine(line) {
+		console.log("uploading");
 		let url = "https://students.washington.edu/wbigelow/insert.php";
 		let data = new FormData();
 		data.append("phrase", line);
 		fetch(url, {method: "POST", body: data})
 			.then(checkStatus)
+			.then(function(responseText) {
+				console.log("uploaded");
+			})
 			.catch(function(error) {
-				alert("Error occured:" + error);
+				console.log("Error occured:" + error);
 			});
 	}
 
