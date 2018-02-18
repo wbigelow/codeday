@@ -2,7 +2,7 @@ import csv
 import requests
 from bs4 import BeautifulSoup
 
-with open('regional-us-daily-latest.csv', newline='') as csvfile:
+with open('regional-us-daily-2017-07-02.csv', newline='') as csvfile:
     tracksDict = dict()
     for row in csvfile.readlines():
         array = row.split(',')
@@ -28,7 +28,7 @@ def lyrics_from_song_api(song_api_path):
     return lyrics
 
 if __name__ == "__main__":
-    outputFile = open("2018Lyrics.txt", "w")
+    outputFile = open("Mid2017Lyrics.txt", "w")
     for key in tracksDict:
         query = _URL_API + _URL_SEARCH
         data = {'q': key}
