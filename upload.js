@@ -5,6 +5,7 @@
 (function() {
 	window.onload = function() {
 		document.getElementById('file').onchange = function(){
+			document.getElementById("status").innerText = "Upload Status: File uploading, do not close this window";
 			var file = this.files[0];
 
 			var reader = new FileReader();
@@ -14,6 +15,7 @@
 				for(var line = 0; line < lines.length; line++){
 					sendLine(lines[line]);
 				}
+				document.getElementById("status").innerText = "Upload Status: Completed";
 			};
 			reader.readAsText(file);
 		};
