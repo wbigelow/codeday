@@ -1,5 +1,5 @@
 <?php
-	# Common functions for the lyric API.
+	# Common functions for the lyric/phrase API.
 
 	# returns: a new database connection
 	function get_db() {
@@ -8,22 +8,22 @@
 		return $db;
 	}
 
-	# Inserts a lyric into the given database.
+	# Inserts a phrase into the given database.
 	# params:
 	#		$db: a database connection
-	#		$lyric: a lyric to be inserted
-	function insert($db, $lyric) {
-		$insert = "INSERT INTO Lyrics (lyirc) ";
-		$values = "VALUES ('$lyric');";
+	#		$phrase: a phrase to be inserted
+	function insert($db, $phrase) {
+		$insert = "INSERT INTO Phrases (phrase) ";
+		$values = "VALUES ('$phrase');";
 		$db->exec($insert . $values);
 	}
 
-	# Removes a lyric from the given database.
+	# Removes a phrase from the given database.
 	# params:
 	#		$db: a database connection
-	#		$lyric: a lyric to be removed
-	function delete($db, $lyric) {
-		$db->exec("DELETE FROM Lyrics WHERE lyric = '$lyric';");
+	#		$phrase: a phrase to be removed
+	function delete($db, $phrase) {
+		$db->exec("DELETE FROM Phrases WHERE phrase = '$phrase';");
 	}
 
 	# Creates an error response for when a request is made with invalid parameters
