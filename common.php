@@ -26,6 +26,30 @@
 		$db->exec("DELETE FROM Phrases WHERE phrase = '$phrase';");
 	}
 
+	# Checks to see if a phrase is in the given database.
+	# params:
+	#		$db: a database connection
+	#		$phrase: a phrase to be checked
+	# returns:
+	#		an error if the phrase is in the database
+	function contains($db, $phrase) {
+		$count = count($db->query("SELECT * FROM Phrases WHERE phrase = '$phrase';")->fetchAll());
+		if($count) {
+			$output["error"] = "Error: Phrase already in database.";
+			return $output;
+		}
+	}
+
+	# Gets all phrases containing the word
+	# params:
+	#		$db: a database connection
+	#		$phrase: a phrase to be checked
+	# returns:
+	#		an error if the phrase is in the database
+	function findall($db, $word) {
+		return $db->query("SELECT * FROM Phrases WHERE phrase LIKE '%$word%';")->fetchAll();
+	}
+
 	# Creates an error response for when a request is made with invalid parameters
 	# params:
 	#		$params: an array of length 1 or 2 of the missing parameters

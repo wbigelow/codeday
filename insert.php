@@ -8,8 +8,14 @@
 		$output = missing_param(["phrase"]);
 	} else {
 		$db = get_db();
-		insert($db, $phrase);
-		$output["success"] = "Successfully added phrase to database";
+		$output = contains($db, $phrase);
+		if($output) {
+			header("HTTP/1.1 400 Invalid Request");
+		} else {
+			$db = get_db();
+			insert($db, $phrase);
+			$output["success"] = "Successfully added phrase to database";
+		}
 	}
 	header("Content-Type: application/json");
 	print(json_encode($output));
