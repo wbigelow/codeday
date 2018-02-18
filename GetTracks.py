@@ -28,7 +28,7 @@ def lyrics_from_song_api(song_api_path):
     return lyrics
 
 if __name__ == "__main__":
-    outputFile = open("Output.txt", "w")
+    outputFile = open("2018Lyrics.txt", "w")
     for key in tracksDict:
         query = _URL_API + _URL_SEARCH
         data = {'q': key}
