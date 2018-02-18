@@ -1,17 +1,15 @@
+// Allows a user to upload quotes to the database
+// by uploading a txt file containing quotes
+// separated by new line characters.
 "use strict";
 (function() {
-
 	window.onload = function() {
 		document.getElementById('file').onchange = function(){
-			console.log("uploading");
 			var file = this.files[0];
 
 			var reader = new FileReader();
 			reader.onload = function(progressEvent){
-				// Entire file
-				console.log(this.result);
-
-				// By lines
+				// Read lines of file, send individually.
 				var lines = this.result.split('\n');
 				for(var line = 0; line < lines.length; line++){
 					sendLine(lines[line]);
@@ -32,19 +30,19 @@
 		}
 	}
 
+	// Posts the given line to the database, storing it.
+	// Logs an error on duplicate quotes.
 	function sendLine(line) {
-		console.log("uploading");
 		let url = "https://students.washington.edu/wbigelow/insert.php";
 		let data = new FormData();
 		data.append("phrase", line);
 		fetch(url, {method: "POST", body: data})
 			.then(checkStatus)
 			.then(function(responseText) {
-				console.log("uploaded");
+				console.log("phrase uploaded");
 			})
 			.catch(function(error) {
 				console.log("Error occured:" + error);
 			});
 	}
-
 })();
