@@ -7,6 +7,14 @@
 <body>
 
 <script type="text/javascript">
+    function checkStatus(response) {  
+        if (response.status >= 200 && response.status < 300) {  
+            return response.text();
+        } else {
+            return Promise.reject(new Error(response.status+": "+response.statusText));
+        }
+    }
+
     function processImage() {
         // **********************************************
         // *** Update or verify the following values. ***
@@ -54,13 +62,23 @@
 
         .done(function(data) {
             // Show formatted JSON on webpage.
-            
+            console.log("fetching data");
+            let url = "findall.php?word="
             var string = "";
-            for (var i = 0; i < 11; i++) {
-                string += data.description.tags[i] + "\n";
+            for (var i = 0; i < 5; i++) {
+                fetch(url + data.description.tags[i])
+                .then(checkStatus)
+                .then(function(responseText) {
+                    let data = JSON.parse(responseText);
+                    for(let j = 0; j < data["phrases"].length; j++) {
+                        string += data["phrases"][j]["phrase"] + "\n\n";
+                    }
+                    document.getElementById("responseTextArea").innerHTML = string;
+                })
+                .catch(function(error) {
+                    console.log("Error occured:" + error);
+                });
             }
-            $("#responseTextArea").val(string);
-
         })
 
         .fail(function(jqXHR, textStatus, errorThrown) {
