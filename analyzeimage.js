@@ -12,7 +12,7 @@
     }
 
     function processImage() {
-        document.getElementById("responseTextArea").innerHTML = "loading";
+        document.getElementById("responseTextArea").innerHTML = "loading...";
 
         // Replace the subscriptionKey string value with your valid subscription key.
         var subscriptionKey = "74b1a35a7ef84b74bdd9a60c1301e255";
