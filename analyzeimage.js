@@ -59,7 +59,9 @@
             console.log("fetching data");
             let url = "findall.php?word="
             var string = "";
-            for (var i = 0; i < 5; i++) {
+            // Number of tags that should be processed
+            let numtags = 1;
+            for (var i = 0; i < numtags; i++) {
                 fetch(url + data.description.tags[i])
                 .then(checkStatus)
                 .then(function(responseText) {

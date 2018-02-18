@@ -47,7 +47,7 @@
 	# returns:
 	#		an error if the phrase is in the database
 	function findall($db, $word) {
-		return $db->query("SELECT * FROM Phrases WHERE phrase LIKE '%$word %';")->fetchAll();
+		return $db->query("SELECT * FROM Phrases WHERE phrase LIKE '% $word %';")->fetchAll();
 	}
 
 	# Creates an error response for when a request is made with invalid parameters
